@@ -123,3 +123,39 @@ Impact:
 
 If you still see an error:
 - Please share the Vercel deployment link and the time it happened so we can check the logs quickly.
+
+---
+
+## 2025-10-05 - Fixed “Read-only file system” error on Vercel (views)
+
+What changed (plain language):
+- We adjusted where the website saves its temporary “compiled view” files so it uses a safe, writable folder in the cloud.
+- On Vercel, some folders are read-only. We now store these temporary files in the system’s temp folder so the website can render pages.
+
+Files updated:
+- vercel.json: set VIEW_COMPILED_PATH to "/tmp/views" (a writable folder on Vercel).
+- bootstrap/app.php: if the usual storage folder isn’t writable, we automatically use the temp folder.
+
+Impact:
+- Pages should render without the previous “Read-only file system” error.
+- No changes were made to any database tables or stored data.
+- This is a safe change and only affects temporary files needed to show pages.
+
+If you still see an error:
+- Please share the Vercel deployment link and the time it happened so we can check the logs quickly.
+
+---
+
+## 2025-10-05 - Ensure the page-rendering feature is ready even earlier (serverless fix)
+
+What changed (plain language):
+- We improved the startup order so the website’s page-rendering feature (views) is ready immediately.
+- This makes sure that even very early errors can show a proper error page instead of failing with the “Target class [view] does not exist” message.
+
+Files updated:
+- bootstrap/app.php: we now initialize the app and immediately turn on the page-rendering feature.
+
+Impact:
+- Home, Login, and other pages should load normally.
+- Error pages should also display properly if something goes wrong early.
+- No database tables were changed.

@@ -39,7 +39,8 @@
     "APP_ENV": "production",
     "APP_DEBUG": "false",
     "LOG_CHANNEL": "stderr",
-    "SESSION_DRIVER": "cookie"
+    "SESSION_DRIVER": "cookie",
+    "VIEW_COMPILED_PATH": "/tmp/views"
   },
   "outputDirectory": "public/build",
   "buildCommand": "npm run build"

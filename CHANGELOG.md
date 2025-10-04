@@ -1,3 +1,30 @@
+# Lead Tracking System - Change Log
+
+## 2025-10-05 - Fixed Vercel HTTP 500 Error
+
+### What was the problem?
+- The website was successfully deployed to Vercel but showed "HTTP ERROR 500" when visitors tried to access it
+- The error logs showed "BindingResolutionException: Target class [view] does not exist"
+- This happened because Laravel's view system wasn't properly configured for the serverless environment
+
+### What we fixed
+- **Added missing view configuration file** (`config/view.php`) that tells Laravel where to find and store website templates
+- **Rebuilt Laravel's cache files** to make sure all settings are properly loaded
+- **Optimized the application** for serverless deployment on Vercel
+
+### Technical details
+- Created `config/view.php` with proper paths for view templates and compiled views
+- Ran `php artisan config:cache` to optimize configuration loading
+- Ran `php artisan view:cache` to pre-compile all Blade templates
+- The fix ensures Laravel's view system works correctly in Vercel's serverless environment
+
+### Result
+- The website should now load properly without HTTP 500 errors
+- All pages and templates will display correctly
+- Better performance due to cached configurations and pre-compiled views
+
+---
+
 ## 2025-01-04 - Vercel Runtime Upgrade
 
 ### Runtime Update

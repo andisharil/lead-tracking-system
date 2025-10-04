@@ -305,10 +305,10 @@ class AdSpendAnalyticsController extends Controller
             $budgetUtilization = $campaign->budget > 0 ? ($spend / $campaign->budget) * 100 : 0;
             
             // Determine primary platform for the campaign within the date range (most frequent in adSpends)
-            $primaryPlatform = optional($campaign->adSpends->groupBy('platform')->sortByDesc(function($rows){return $rows->count();})->keys()->first());
-            if (is_array($primaryPlatform)) { // safety if optional returns array-like
-                $primaryPlatform = $campaign->adSpends->groupBy('platform')->sortByDesc(function($rows){return $rows->count();})->keys()->first();
-            }
+            $primaryPlatform = $campaign->adSpends->groupBy('platform')
+                ->sortByDesc(function($rows){ return $rows->count(); })
+                ->keys()
+                ->first();
             
             return [
                 'id' => $campaign->id,
@@ -537,7 +537,7 @@ class AdSpendAnalyticsController extends Controller
             return [
                 'campaign_id' => $campaign->id,
                 'campaign_name' => $campaign->name,
-                'platform' => optional($campaign->adSpends->groupBy('platform')->keys()->first()),
+                'platform' => $campaign->adSpends->groupBy('platform')->keys()->first(),
                 'budget' => $campaign->budget,
                 'spend' => $spend,
                 'remaining' => $remaining,

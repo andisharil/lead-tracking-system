@@ -225,7 +225,7 @@
                     @foreach(($platformPerformance ?? []) as $platform)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-900">{{ ucfirst($platform['platform']) }}</div>
+                            <div class="text-sm font-medium text-gray-900">{{ ucfirst($platform['platform'] ?? '') }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ $platform['campaigns'] }}</div>
@@ -283,7 +283,7 @@
                             <div class="text-sm font-medium text-gray-900">{{ $source['name'] }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ ucfirst($source['type']) }}</div>
+                            <div class="text-sm text-gray-900">{{ ucfirst($source['type'] ?? '') }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-red-600">${{ number_format($source['spend'], 2) }}</div>
@@ -336,7 +336,7 @@
                             <div class="text-sm font-medium text-gray-900">{{ $campaign['name'] }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ ucfirst($campaign['platform']) }}</div>
+                            <div class="text-sm text-gray-900">{{ ucfirst($campaign['platform'] ?? '') }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">${{ number_format($campaign['budget'], 2) }}</div>
@@ -413,7 +413,7 @@
                 </div>
                 <div class="border-t pt-4">
                     <h3 class="text-sm font-medium text-gray-700 mb-2">Campaigns</h3>
-                    @foreach($roiAnalysis['worst_campaigns']->take(3) as $campaign)
+                    @foreach((($roiAnalysis['worst_campaigns'] ?? collect())->take(3)) as $campaign)
                     <div class="flex justify-between items-center py-2">
                         <span class="text-sm text-gray-900">{{ $campaign['name'] }}</span>
                         <span class="text-sm font-medium text-red-600">{{ number_format($campaign['roi'], 1) }}%</span>
@@ -447,7 +447,7 @@
                             <div class="text-sm font-medium text-gray-900">{{ $budget['campaign_name'] }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">{{ ucfirst($budget['platform']) }}</div>
+                            <div class="text-sm text-gray-900">{{ ucfirst($budget['platform'] ?? '') }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">${{ number_format($budget['budget'], 2) }}</div>

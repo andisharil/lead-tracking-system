@@ -295,3 +295,17 @@ Files updated:
 - app/Http/Controllers/PerformanceController.php: Added protection around data loading and safe default values for overall metrics, monthly trend chart, source quality chart, and ROI & cost analysis.
 - app/Http/Controllers/SourceController.php: Added protection around data loading and safe default values for list and header cards.
 - app/Http/Controllers/LocationController.php: Added protection around data loading and safe default values for list and header cards.
+
+## 2025-10-05 - Prevent Ad Spend Analytics crash when some fields are missing
+
+What changed (plain language):
+- We improved the Ad Spend Analytics page so it does not crash when some data fields are temporarily missing (for example, when the database has a hiccup).
+- Specifically, we made the page safe when showing platform names and categories, even if those values are empty.
+
+Impact:
+- The Ad Spend Analytics page should now open reliably, and show placeholder values instead of breaking.
+- No changes were made to any database tables or stored data.
+
+Files updated:
+- resources/views/ad-spend-analytics/index.blade.php: Ensured text formatting functions don’t crash on empty values (e.g., ucfirst(null)).
+- resources/views/ad-spend-analytics/index.blade.php: Made the “Worst Campaigns” list tolerant of empty/missing data by using a safe default collection.

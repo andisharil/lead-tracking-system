@@ -126,6 +126,24 @@ If you still see an error:
 
 ---
 
+## 2025-10-05 - Fixed homepage crash on Vercel (“config” not ready during startup)
+
+What changed (plain language):
+- We improved the startup order so the app doesn’t try to use its settings system too early.
+- Instead of asking the app for settings during boot, we now tell the app where to save temporary view files using an environment setting first.
+
+Files updated:
+- bootstrap/app.php: removed the early settings call and set VIEW_COMPILED_PATH via environment before loading page-rendering features.
+
+Impact:
+- The homepage should no longer crash with a “config class does not exist” error.
+- No database tables or data were changed.
+
+If you still see an error:
+- Please share the Vercel deployment link and the time it happened so we can check the logs quickly.
+
+---
+
 ## 2025-10-05 - Fixed “Read-only file system” error on Vercel (views)
 
 What changed (plain language):
@@ -145,6 +163,19 @@ If you still see an error:
 - Please share the Vercel deployment link and the time it happened so we can check the logs quickly.
 
 ---
+
+## 2025-10-05 - Fixed translation error in serverless error pages
+
+What changed (plain language):
+- We made sure the website’s translation feature is turned on during startup, so messages like “Server Error” can be displayed correctly in error pages.
+
+Files updated:
+- bootstrap/providers.php: enabled the Translation provider.
+- bootstrap/app.php: registered the Translation provider on startup.
+
+Impact:
+- Error pages render properly without translation-related crashes.
+- No changes were made to any database tables or stored data.
 
 ## 2025-10-05 - Ensure the page-rendering feature is ready even earlier (serverless fix)
 

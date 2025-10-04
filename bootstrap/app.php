@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Filesystem\FilesystemServiceProvider;
+use Illuminate\Translation\TranslationServiceProvider;
 use Illuminate\View\ViewServiceProvider;
 
 $app = Application::configure(basePath: dirname(__DIR__))
@@ -48,5 +49,6 @@ $_SERVER['VIEW_COMPILED_PATH'] = $targetCompiled;
 // Register critical providers after ensuring compiled path env is set
 $app->register(FilesystemServiceProvider::class);
 $app->register(ViewServiceProvider::class);
+$app->register(TranslationServiceProvider::class);
 
 return $app;

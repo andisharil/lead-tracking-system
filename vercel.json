@@ -11,6 +11,10 @@
       "dest": "public/$1/$2"
     },
     {
+      "src": "/build/(.*)",
+      "dest": "public/build/$1"
+    },
+    {
       "src": "/favicon.ico",
       "dest": "public/favicon.ico"
     },
@@ -32,5 +36,7 @@
     "APP_DEBUG": "false",
     "LOG_CHANNEL": "stderr",
     "SESSION_DRIVER": "cookie"
-  }
+  },
+  "outputDirectory": "public/build",
+  "buildCommand": "npm run build"
 }

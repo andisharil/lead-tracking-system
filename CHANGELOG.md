@@ -1,5 +1,44 @@
 # Lead Tracking System - Change Log
 
+## [2024-10-05] - Bootstrap Cache Write Error Fix
+
+### Problem
+The website was still showing errors on Vercel hosting. The system was trying to write temporary files to a location that's not allowed in the cloud hosting environment. This caused the website to crash when trying to load.
+
+### What We Fixed
+- Redirected all temporary file storage to a writable location in the cloud environment
+- Made sure the system creates the necessary folders automatically
+- Updated the hosting configuration to use the correct file paths
+- Simplified the bootstrap process to work better in cloud environments
+
+### Technical Details
+- Updated `vercel.json` to redirect Laravel cache paths to `/tmp` directory
+- Modified `bootstrap/app.php` to automatically create cache directories in serverless environment
+- Added environment variables for services, packages, config, routes, and events cache
+- Ensured both bootstrap cache and view compilation use writable `/tmp` locations
+
+### Result
+The website should now work properly in the cloud hosting environment without file write permission errors. All system caches will be stored in the correct writable locations.
+
+## [2024-10-05] - HTTP 500 Error Fix
+
+### Problem
+The website was showing an HTTP 500 error on Vercel hosting. The error was caused by Laravel not being able to find the view system configuration, which is needed to display web pages properly.
+
+### What We Fixed
+- Added proper view configuration to tell Laravel where to store and find web page templates
+- Rebuilt the system cache to make sure all configurations are properly loaded
+- Made sure the system can handle web page requests correctly
+
+### Technical Details
+- Created `config/view.php` file with proper view paths configuration
+- Ran `php artisan config:cache` to rebuild configuration cache
+- Ran `php artisan view:cache` to rebuild view template cache
+- Committed and pushed changes to trigger new deployment
+
+### Result
+The website should now load properly without HTTP 500 errors. All web pages and templates should display correctly.
+
 ## 2025-10-05 - Fixed Vercel HTTP 500 Error
 
 ### What was the problem?

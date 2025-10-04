@@ -1,3 +1,19 @@
+## 2025-01-04 - Vercel Runtime Upgrade
+
+### Runtime Update
+- **Upgraded vercel-php runtime** from version 0.6.0 to 0.7.4
+- **Fixed deployment error** about discontinued Node.js 18.x runtime
+- **Now using Node.js 22.x** for better performance and security
+- **Upgraded to PHP 8.3.x** for latest features and improvements
+
+### What this means
+- Your app will deploy successfully on Vercel without runtime errors
+- Better performance with the latest Node.js and PHP versions
+- Enhanced security with updated runtime environment
+- Future-proof deployment configuration
+
+---
+
 ## 2025-01-04 - GitHub Repository Setup and Production Deployment
 
 ### Git Repository Configuration

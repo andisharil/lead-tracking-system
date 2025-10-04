@@ -17,87 +17,121 @@ class CampaignController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Campaign::with(['source', 'leads', 'adSpends'])
-            ->withCount([
-                'leads',
-                'leads as conversions' => function ($q) {
-                    $q->where('status', 'successful');
-                },
+        try {
+            $query = Campaign::with(['source', 'leads', 'adSpends'])
+                ->withCount([
+                    'leads',
+                    'leads as conversions' => function ($q) {
+                        $q->where('status', 'successful');
+                    },
+                ]);
+            
+            // Search functionality
+            if ($request->filled('search')) {
+                $search = $request->search;
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%")
+                      ->orWhereHas('source', function ($sourceQuery) use ($search) {
+                          $sourceQuery->where('name', 'like', "%{$search}%");
+                      });
+                });
+            }
+            
+            // Status filter
+            if ($request->filled('status')) {
+                $query->where('status', $request->status);
+            }
+            
+            // Source filter
+            if ($request->filled('source_id')) {
+                $query->where('source_id', $request->source_id);
+            }
+            
+            // Type filter
+            if ($request->filled('type')) {
+                $query->where('type', $request->type);
+            }
+            
+            // Date range filter
+            if ($request->filled('start_date') && $request->filled('end_date')) {
+                $query->dateRange($request->start_date, $request->end_date);
+            }
+            
+            // Sorting
+            $sortBy = $request->get('sort_by', 'created_at');
+            $sortOrder = $request->get('sort_order', 'desc');
+            
+            if (in_array($sortBy, ['name', 'status', 'type', 'budget', 'spent', 'start_date', 'end_date', 'created_at'])) {
+                $query->orderBy($sortBy, $sortOrder);
+            }
+            
+            $campaigns = $query->paginate(15)->withQueryString();
+            
+            // Calculate summary metrics for overview
+            $totalCampaigns = Campaign::count();
+            $activeCampaigns = Campaign::active()->count();
+            $totalLeads = Lead::whereNotNull('campaign_id')->count();
+            $successfulLeads = Lead::whereNotNull('campaign_id')->where('status', 'successful')->count();
+            $avgConversionRate = $totalLeads > 0 ? round(($successfulLeads / $totalLeads) * 100, 2) : 0;
+            
+            // Bundle into overview metrics object for the view
+            $overviewMetrics = (object) [
+                'total_campaigns' => $totalCampaigns,
+                'active_campaigns' => $activeCampaigns,
+                'total_leads' => $totalLeads,
+                'avg_conversion_rate' => $avgConversionRate,
+            ];
+            
+            // Preserve filter inputs for the view
+            $search = $request->get('search', '');
+            $status = $request->get('status', '');
+            
+            // Get sources for potential filters (not currently used in the view but kept for compatibility)
+            $sources = Source::orderBy('name')->get();
+            
+            return view('campaigns.index', compact(
+                'campaigns',
+                'overviewMetrics',
+                'search',
+                'status',
+                'sortBy',
+                'sortOrder',
+                'sources'
+            ));
+        } catch (\Throwable $e) {
+            logger()->warning('Campaigns index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load campaigns. Please try again later.');
+        
+            $campaigns = new \Illuminate\Pagination\LengthAwarePaginator(collect([]), 0, 15, 1, [
+                'path' => url()->current(),
+                'query' => $request->query(),
             ]);
         
-        // Search functionality
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhereHas('source', function ($sourceQuery) use ($search) {
-                      $sourceQuery->where('name', 'like', "%{$search}%");
-                  });
-            });
+            $overviewMetrics = (object) [
+                'total_campaigns' => 0,
+                'active_campaigns' => 0,
+                'total_leads' => 0,
+                'avg_conversion_rate' => 0,
+            ];
+        
+            $search = $request->get('search', '');
+            $status = $request->get('status', '');
+            $sortBy = $request->get('sort_by', 'created_at');
+            $sortOrder = $request->get('sort_order', 'desc');
+        
+            $sources = collect([]);
+        
+            return view('campaigns.index', compact(
+                'campaigns',
+                'overviewMetrics',
+                'search',
+                'status',
+                'sortBy',
+                'sortOrder',
+                'sources'
+            ));
         }
-        
-        // Status filter
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
-        
-        // Source filter
-        if ($request->filled('source_id')) {
-            $query->where('source_id', $request->source_id);
-        }
-        
-        // Type filter
-        if ($request->filled('type')) {
-            $query->where('type', $request->type);
-        }
-        
-        // Date range filter
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->dateRange($request->start_date, $request->end_date);
-        }
-        
-        // Sorting
-        $sortBy = $request->get('sort_by', 'created_at');
-        $sortOrder = $request->get('sort_order', 'desc');
-        
-        if (in_array($sortBy, ['name', 'status', 'type', 'budget', 'spent', 'start_date', 'end_date', 'created_at'])) {
-            $query->orderBy($sortBy, $sortOrder);
-        }
-        
-        $campaigns = $query->paginate(15)->withQueryString();
-        
-        // Calculate summary metrics for overview
-        $totalCampaigns = Campaign::count();
-        $activeCampaigns = Campaign::active()->count();
-        $totalLeads = Lead::whereNotNull('campaign_id')->count();
-        $successfulLeads = Lead::whereNotNull('campaign_id')->where('status', 'successful')->count();
-        $avgConversionRate = $totalLeads > 0 ? round(($successfulLeads / $totalLeads) * 100, 2) : 0;
-        
-        // Bundle into overview metrics object for the view
-        $overviewMetrics = (object) [
-            'total_campaigns' => $totalCampaigns,
-            'active_campaigns' => $activeCampaigns,
-            'total_leads' => $totalLeads,
-            'avg_conversion_rate' => $avgConversionRate,
-        ];
-        
-        // Preserve filter inputs for the view
-        $search = $request->get('search', '');
-        $status = $request->get('status', '');
-        
-        // Get sources for potential filters (not currently used in the view but kept for compatibility)
-        $sources = Source::orderBy('name')->get();
-        
-        return view('campaigns.index', compact(
-            'campaigns',
-            'overviewMetrics',
-            'search',
-            'status',
-            'sortBy',
-            'sortOrder',
-            'sources'
-        ));
     }
     
     /**

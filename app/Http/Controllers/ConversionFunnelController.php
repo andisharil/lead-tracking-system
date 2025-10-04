@@ -17,36 +17,61 @@ class ConversionFunnelController extends Controller
         $dateTo = $request->get('date_to', now()->format('Y-m-d'));
         $sourceId = $request->get('source_id');
         $campaignId = $request->get('campaign_id');
-        
-        // Get funnel data
-        $funnelData = $this->getFunnelData($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get conversion rates
-        $conversionRates = $this->getConversionRates($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get drop-off analysis
-        $dropOffAnalysis = $this->getDropOffAnalysis($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get stage performance over time
-        $stagePerformance = $this->getStagePerformance($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get source funnel comparison
-        $sourceFunnelComparison = $this->getSourceFunnelComparison($dateFrom, $dateTo);
-        
-        // Get campaign funnel comparison
-        $campaignFunnelComparison = $this->getCampaignFunnelComparison($dateFrom, $dateTo);
-        
-        // Get funnel velocity (time between stages)
-        $funnelVelocity = $this->getFunnelVelocity($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        $sources = Source::all();
-        $campaigns = Campaign::all();
-        
-        return view('conversion-funnel.index', compact(
-            'funnelData', 'conversionRates', 'dropOffAnalysis', 'stagePerformance',
-            'sourceFunnelComparison', 'campaignFunnelComparison', 'funnelVelocity',
-            'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 'campaignId'
-        ));
+    
+        try {
+            // Get funnel data
+            $funnelData = $this->getFunnelData($dateFrom, $dateTo, $sourceId, $campaignId);
+    
+            // Get conversion rates
+            $conversionRates = $this->getConversionRates($dateFrom, $dateTo, $sourceId, $campaignId);
+    
+            // Get drop-off analysis
+            $dropOffAnalysis = $this->getDropOffAnalysis($dateFrom, $dateTo, $sourceId, $campaignId);
+    
+            // Get stage performance over time
+            $stagePerformance = $this->getStagePerformance($dateFrom, $dateTo, $sourceId, $campaignId);
+    
+            // Get source funnel comparison
+            $sourceFunnelComparison = $this->getSourceFunnelComparison($dateFrom, $dateTo);
+    
+            // Get campaign funnel comparison
+            $campaignFunnelComparison = $this->getCampaignFunnelComparison($dateFrom, $dateTo);
+    
+            // Get funnel velocity (time between stages)
+            $funnelVelocity = $this->getFunnelVelocity($dateFrom, $dateTo, $sourceId, $campaignId);
+    
+            $sources = Source::all();
+            $campaigns = Campaign::all();
+    
+            return view('conversion-funnel.index', compact(
+                'funnelData', 'conversionRates', 'dropOffAnalysis', 'stagePerformance',
+                'sourceFunnelComparison', 'campaignFunnelComparison', 'funnelVelocity',
+                'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 'campaignId'
+            ));
+        } catch (\Throwable $e) {
+            logger()->warning('Conversion Funnel index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load the conversion funnel. Please try again later.');
+    
+            $funnelData = [];
+            $conversionRates = [
+                'new_to_successful' => 0,
+                'overall_success_rate' => 0,
+                'drop_off_rate' => 0,
+            ];
+            $dropOffAnalysis = [];
+            $stagePerformance = [];
+            $sourceFunnelComparison = [];
+            $campaignFunnelComparison = [];
+            $funnelVelocity = [];
+            $sources = collect([]);
+            $campaigns = collect([]);
+    
+            return view('conversion-funnel.index', compact(
+                'funnelData', 'conversionRates', 'dropOffAnalysis', 'stagePerformance',
+                'sourceFunnelComparison', 'campaignFunnelComparison', 'funnelVelocity',
+                'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 'campaignId'
+            ));
+        }
     }
     
     private function getFunnelData($dateFrom, $dateTo, $sourceId = null, $campaignId = null)

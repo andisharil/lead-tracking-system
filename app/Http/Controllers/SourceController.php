@@ -18,6 +18,7 @@ class SourceController extends Controller
         $sortBy = $request->get('sort_by', 'name');
         $sortOrder = $request->get('sort_order', 'asc');
         
+        try {
         $sources = Source::select(
             'sources.id',
             'sources.name',
@@ -43,27 +44,38 @@ class SourceController extends Controller
             return $query->where('sources.status', $status);
         })
         ->groupBy('sources.id', 'sources.name', 'sources.description', 'sources.type', 'sources.status', 'sources.created_at')
-        ->orderBy($sortBy === 'conversion_rate' ? 'conversion_rate' : "sources.{$sortBy}", $sortOrder)
-        ->paginate(15);
+        ->orderBy($sortBy, $sortOrder)
+        ->paginate(15)
+        ->withQueryString();
         
-        // Calculate performance metrics for header cards
+        // Header cards
         $totalSources = Source::count();
         $activeSources = Source::where('status', 'active')->count();
         $totalLeads = Lead::count();
-        $successfulLeadsAll = Lead::where('status', 'successful')->count();
-        $avgConversionRate = $totalLeads > 0 ? round(($successfulLeadsAll / $totalLeads) * 100, 2) : 0;
+        $averageConversionRate = Lead::select(DB::raw("ROUND((SUM(CASE WHEN status = 'successful' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100, 2) as avg_conversion"))->value('avg_conversion');
         
         return view('sources.index', compact(
-            'sources',
-            'totalSources',
-            'activeSources',
-            'totalLeads',
-            'avgConversionRate',
-            'search',
-            'status',
-            'sortBy',
-            'sortOrder'
+            'sources', 'totalSources', 'activeSources', 'totalLeads', 'averageConversionRate',
+            'search', 'status', 'sortBy', 'sortOrder'
         ));
+        } catch (\Throwable $e) {
+            logger()->warning('Sources index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load sources. Please try again later.');
+            
+            $sources = new \Illuminate\Pagination\LengthAwarePaginator(collect([]), 0, 15, 1, [
+                'path' => url()->current(),
+                'query' => $request->query(),
+            ]);
+            $totalSources = 0;
+            $activeSources = 0;
+            $totalLeads = 0;
+            $averageConversionRate = 0;
+            
+            return view('sources.index', compact(
+                'sources', 'totalSources', 'activeSources', 'totalLeads', 'averageConversionRate',
+                'search', 'status', 'sortBy', 'sortOrder'
+            ));
+        }
     }
     
     public function create()

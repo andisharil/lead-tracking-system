@@ -19,39 +19,80 @@ class PerformanceMetricsController extends Controller
         $sourceId = $request->get('source_id');
         $campaignId = $request->get('campaign_id');
         $metric = $request->get('metric', 'roi');
+        try {
+            // Get ROI analysis
+            $roiAnalysis = $this->getROIAnalysis($dateFrom, $dateTo, $sourceId, $campaignId);
+            
+            // Get conversion rate tracking
+            $conversionTracking = $this->getConversionTracking($dateFrom, $dateTo, $sourceId, $campaignId);
+            
+            // Get source effectiveness
+            $sourceEffectiveness = $this->getSourceEffectiveness($dateFrom, $dateTo);
+            
+            // Get campaign effectiveness
+            $campaignEffectiveness = $this->getCampaignEffectiveness($dateFrom, $dateTo);
+            
+            // Get performance trends
+            $performanceTrends = $this->getPerformanceTrends($dateFrom, $dateTo, $sourceId, $campaignId);
+            
+            // Get cost analysis
+            $costAnalysis = $this->getCostAnalysis($dateFrom, $dateTo, $sourceId, $campaignId);
+            
+            // Get lead quality metrics
+            $leadQualityMetrics = $this->getLeadQualityMetrics($dateFrom, $dateTo, $sourceId, $campaignId);
+            
+            // Get performance benchmarks
+            $benchmarks = $this->getPerformanceBenchmarks($dateFrom, $dateTo);
+            
+            $sources = Source::all();
+            $campaigns = Campaign::all();
+            
+            return view('performance-metrics.index', compact(
+                'roiAnalysis', 'conversionTracking', 'sourceEffectiveness', 'campaignEffectiveness',
+                'performanceTrends', 'costAnalysis', 'leadQualityMetrics', 'benchmarks',
+                'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 'campaignId', 'metric'
+            ));
+        } catch (\Throwable $e) {
+            logger()->warning('Performance metrics index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load performance metrics. Please try again later.');
         
-        // Get ROI analysis
-        $roiAnalysis = $this->getROIAnalysis($dateFrom, $dateTo, $sourceId, $campaignId);
+            $roiAnalysis = [
+                'total_spend' => 0,
+                'total_revenue' => 0,
+                'roi' => 0,
+                'roas' => 0,
+                'cost_per_lead' => 0,
+                'cost_per_acquisition' => 0,
+                'avg_deal_size' => 0,
+                'conversion_rate' => 0,
+                'total_leads' => 0,
+                'closed_leads' => 0,
+                'roi_change' => 0,
+                'profit_margin' => 0,
+            ];
+            $conversionTracking = [
+                'stage_conversions' => [],
+                'daily_conversions' => collect([]),
+                'avg_time_to_close' => 0,
+                'overall_conversion_rate' => 0,
+                'win_rate' => 0,
+            ];
+            $sourceEffectiveness = collect([]);
+            $campaignEffectiveness = collect([]);
+            $performanceTrends = collect([]);
+            $costAnalysis = collect([]);
+            $leadQualityMetrics = collect([]);
+            $benchmarks = collect([]);
         
-        // Get conversion rate tracking
-        $conversionTracking = $this->getConversionTracking($dateFrom, $dateTo, $sourceId, $campaignId);
+            $sources = collect([]);
+            $campaigns = collect([]);
         
-        // Get source effectiveness
-        $sourceEffectiveness = $this->getSourceEffectiveness($dateFrom, $dateTo);
-        
-        // Get campaign effectiveness
-        $campaignEffectiveness = $this->getCampaignEffectiveness($dateFrom, $dateTo);
-        
-        // Get performance trends
-        $performanceTrends = $this->getPerformanceTrends($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get cost analysis
-        $costAnalysis = $this->getCostAnalysis($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get lead quality metrics
-        $leadQualityMetrics = $this->getLeadQualityMetrics($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get performance benchmarks
-        $benchmarks = $this->getPerformanceBenchmarks($dateFrom, $dateTo);
-        
-        $sources = Source::all();
-        $campaigns = Campaign::all();
-        
-        return view('performance-metrics.index', compact(
-            'roiAnalysis', 'conversionTracking', 'sourceEffectiveness', 'campaignEffectiveness',
-            'performanceTrends', 'costAnalysis', 'leadQualityMetrics', 'benchmarks',
-            'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 'campaignId', 'metric'
-        ));
+            return view('performance-metrics.index', compact(
+                'roiAnalysis', 'conversionTracking', 'sourceEffectiveness', 'campaignEffectiveness',
+                'performanceTrends', 'costAnalysis', 'leadQualityMetrics', 'benchmarks',
+                'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 'campaignId', 'metric'
+            ));
+        }
     }
     
     private function getROIAnalysis($dateFrom, $dateTo, $sourceId = null, $campaignId = null)

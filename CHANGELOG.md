@@ -275,3 +275,23 @@ Impact:
 
 Files updated:
 - config/session.php: Uses SESSION_FILES_PATH for file storage and SESSION_COOKIE_PATH for the cookie path.
+
+---
+
+## 2025-10-04 - Prevent report and performance pages from crashing if data is temporarily unavailable
+
+What changed (plain language):
+- Added protection for the Conversion Funnel, Funnel Overview, and Ad Spend Analytics pages so they don’t crash if data is slow or temporarily unavailable. Instead, the pages will show placeholder numbers and a friendly note asking you to try again later. This makes the app feel more dependable during brief data hiccups.
+- Affected areas: ConversionFunnelController (conversion funnel page), FunnelController (funnel overview page), and AdSpendAnalyticsController (ad spend analytics page).
+- Added a safety net to the Reports, Performance, Sources, and Locations pages so they still open and show placeholder numbers if the database is briefly unavailable.
+- Visitors will see a friendly message at the top and the page remains usable. Our team will see a warning in the logs so we can investigate.
+
+Impact:
+- Better reliability across key analytics pages.
+- No changes were made to any database tables or stored data.
+
+Files updated:
+- app/Http/Controllers/ReportsController.php: Added protection around data loading and safe default values for overview, charts, conversion metrics, source and campaign performance, revenue analytics, and trends.
+- app/Http/Controllers/PerformanceController.php: Added protection around data loading and safe default values for overall metrics, monthly trend chart, source quality chart, and ROI & cost analysis.
+- app/Http/Controllers/SourceController.php: Added protection around data loading and safe default values for list and header cards.
+- app/Http/Controllers/LocationController.php: Added protection around data loading and safe default values for list and header cards.

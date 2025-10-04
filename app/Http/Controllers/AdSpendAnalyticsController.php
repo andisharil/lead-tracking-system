@@ -18,62 +18,110 @@ class AdSpendAnalyticsController extends Controller
         $source = $request->get('source');
         $campaign = $request->get('campaign');
         $platform = $request->get('platform');
-        
+    
         $startDate = Carbon::now()->subDays($dateRange);
         $endDate = Carbon::now();
-        
+    
         if ($request->get('start_date') && $request->get('end_date')) {
             $startDate = Carbon::parse($request->get('start_date'));
             $endDate = Carbon::parse($request->get('end_date'));
         }
-        
-        // Get overview metrics
-        $overview = $this->getOverviewMetrics($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get spend breakdown by source
-        $sourceBreakdown = $this->getSourceBreakdown($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get spend breakdown by campaign
-        $campaignBreakdown = $this->getCampaignBreakdown($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get daily spend trend
-        $dailySpendTrend = $this->getDailySpendTrend($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get platform performance
-        $platformPerformance = $this->getPlatformPerformance($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get ROI analysis
-        $roiAnalysis = $this->getROIAnalysis($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get budget utilization
-        $budgetUtilization = $this->getBudgetUtilization($startDate, $endDate, $source, $campaign, $platform);
-        
-        // Get filter options
-        $sources = Source::where('status', 'active')->get();
-        $campaigns = Campaign::where('status', 'active')->get();
-        // Pull platform options from ad_spend table since campaigns table has no platform column
-        $platforms = AdSpend::query()
-            ->select('platform')
-            ->whereNotNull('platform')
-            ->distinct()
-            ->pluck('platform');
-        
-        return view('ad-spend-analytics.index', compact(
-            'overview',
-            'sourceBreakdown',
-            'campaignBreakdown',
-            'dailySpendTrend',
-            'platformPerformance',
-            'roiAnalysis',
-            'budgetUtilization',
-            'sources',
-            'campaigns',
-            'platforms',
-            'dateRange',
-            'source',
-            'campaign',
-            'platform'
-        ));
+    
+        try {
+            // Get overview metrics
+            $overview = $this->getOverviewMetrics($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get spend breakdown by source
+            $sourceBreakdown = $this->getSourceBreakdown($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get spend breakdown by campaign
+            $campaignBreakdown = $this->getCampaignBreakdown($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get daily spend trend
+            $dailySpendTrend = $this->getDailySpendTrend($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get platform performance
+            $platformPerformance = $this->getPlatformPerformance($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get ROI analysis
+            $roiAnalysis = $this->getROIAnalysis($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get budget utilization
+            $budgetUtilization = $this->getBudgetUtilization($startDate, $endDate, $source, $campaign, $platform);
+    
+            // Get filter options
+            $sources = Source::where('status', 'active')->get();
+            $campaigns = Campaign::where('status', 'active')->get();
+            // Pull platform options from ad_spend table since campaigns table has no platform column
+            $platforms = AdSpend::query()
+                ->select('platform')
+                ->whereNotNull('platform')
+                ->distinct()
+                ->pluck('platform');
+    
+            return view('ad-spend-analytics.index', compact(
+                'overview',
+                'sourceBreakdown',
+                'campaignBreakdown',
+                'dailySpendTrend',
+                'platformPerformance',
+                'roiAnalysis',
+                'budgetUtilization',
+                'sources',
+                'campaigns',
+                'platforms',
+                'dateRange',
+                'source',
+                'campaign',
+                'platform'
+            ));
+        } catch (\Throwable $e) {
+            logger()->warning('Ad Spend Analytics index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load Ad Spend Analytics. Please try again later.');
+    
+            $overview = [
+                'total_spend' => 0,
+                'total_revenue' => 0,
+                'total_leads' => 0,
+                'conversions' => 0,
+                'cost_per_lead' => 0,
+                'cost_per_conversion' => 0,
+                'roi' => 0,
+                'roas' => 0,
+                'profit' => 0,
+            ];
+            $sourceBreakdown = [];
+            $campaignBreakdown = [];
+            $dailySpendTrend = [];
+            $platformPerformance = [];
+            $roiAnalysis = [
+                'top_sources' => [],
+                'top_campaigns' => [],
+                'worst_sources' => [],
+                'worst_campaigns' => [],
+            ];
+            $budgetUtilization = [];
+            $sources = collect([]);
+            $campaigns = collect([]);
+            $platforms = collect([]);
+    
+            return view('ad-spend-analytics.index', compact(
+                'overview',
+                'sourceBreakdown',
+                'campaignBreakdown',
+                'dailySpendTrend',
+                'platformPerformance',
+                'roiAnalysis',
+                'budgetUtilization',
+                'sources',
+                'campaigns',
+                'platforms',
+                'dateRange',
+                'source',
+                'campaign',
+                'platform'
+            ));
+        }
     }
     
     public function export(Request $request)

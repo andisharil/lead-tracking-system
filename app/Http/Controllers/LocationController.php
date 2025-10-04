@@ -18,6 +18,7 @@ class LocationController extends Controller
         $sortBy = $request->get('sort_by', 'name');
         $sortOrder = $request->get('sort_order', 'asc');
         
+        try {
         $locations = Location::select(
             'locations.id',
             'locations.name',
@@ -46,27 +47,38 @@ class LocationController extends Controller
             return $query->where('locations.status', $status);
         })
         ->groupBy('locations.id', 'locations.name', 'locations.city', 'locations.state', 'locations.country', 'locations.postal_code', 'locations.status', 'locations.created_at')
-        ->orderBy($sortBy === 'conversion_rate' ? 'conversion_rate' : "locations.{$sortBy}", $sortOrder)
-        ->paginate(15);
+        ->orderBy($sortBy, $sortOrder)
+        ->paginate(15)
+        ->withQueryString();
         
-        // Calculate performance metrics for header cards
+        // Header cards
         $totalLocations = Location::count();
         $activeLocations = Location::where('status', 'active')->count();
         $totalLeads = Lead::count();
-        $successfulLeadsAll = Lead::where('status', 'successful')->count();
-        $avgConversionRate = $totalLeads > 0 ? round(($successfulLeadsAll / $totalLeads) * 100, 2) : 0;
+        $avgConversionRate = Lead::select(DB::raw("ROUND((SUM(CASE WHEN status = 'successful' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)) * 100, 2) as avg_conversion"))->value('avg_conversion');
         
         return view('locations.index', compact(
-            'locations',
-            'totalLocations',
-            'activeLocations',
-            'totalLeads',
-            'avgConversionRate',
-            'search',
-            'status',
-            'sortBy',
-            'sortOrder'
+            'locations', 'totalLocations', 'activeLocations', 'totalLeads', 'avgConversionRate',
+            'search', 'status', 'sortBy', 'sortOrder'
         ));
+        } catch (\Throwable $e) {
+            logger()->warning('Locations index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load locations. Please try again later.');
+            
+            $locations = new \Illuminate\Pagination\LengthAwarePaginator(collect([]), 0, 15, 1, [
+                'path' => url()->current(),
+                'query' => $request->query(),
+            ]);
+            $totalLocations = 0;
+            $activeLocations = 0;
+            $totalLeads = 0;
+            $avgConversionRate = 0;
+            
+            return view('locations.index', compact(
+                'locations', 'totalLocations', 'activeLocations', 'totalLeads', 'avgConversionRate',
+                'search', 'status', 'sortBy', 'sortOrder'
+            ));
+        }
     }
     
     public function create()

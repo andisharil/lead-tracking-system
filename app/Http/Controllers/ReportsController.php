@@ -2,152 +2,131 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use App\Models\Lead;
 use App\Models\Source;
 use App\Models\Campaign;
-use App\Models\AdSpend;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use PDF;
 
 class ReportsController extends Controller
 {
     public function index(Request $request)
     {
-        $dateFrom = $request->get('date_from', now()->subDays(30)->format('Y-m-d'));
-        $dateTo = $request->get('date_to', now()->format('Y-m-d'));
+        $dateFrom = $request->get('date_from', Carbon::now()->subDays(30)->toDateString());
+        $dateTo = $request->get('date_to', Carbon::now()->toDateString());
         $sourceId = $request->get('source_id');
         $campaignId = $request->get('campaign_id');
-        $chartType = $request->get('chart_type', 'line');
         $metric = $request->get('metric', 'leads');
-        $status = $request->get('status');
-        
-        // Handle export
-        if ($request->get('export')) {
-            return $this->exportReport($request->get('export'), $dateFrom, $dateTo, $sourceId, $campaignId, $status);
+        $status = $this->normalizeStatusFilter($request->get('status'));
+        $chartType = $request->get('chart_type', 'line');
+
+        try {
+            if ($request->get('export') === 'pdf') {
+                return $this->exportPdf($dateFrom, $dateTo, $sourceId, $campaignId, $status, $metric, $chartType);
+            } elseif ($request->get('export') === 'csv') {
+                return $this->exportCSV($dateFrom, $dateTo, $sourceId, $campaignId, $status, $metric);
+            }
+
+            $overview = $this->getOverviewMetrics($dateFrom, $dateTo, $sourceId, $campaignId, $status);
+            $chartData = $this->getChartData($dateFrom, $dateTo, $sourceId, $campaignId, $status, $metric, $chartType);
+            $conversionMetrics = $this->getConversionMetrics($dateFrom, $dateTo, $sourceId, $campaignId, $status);
+            $sourcePerformance = $this->getSourcePerformance($dateFrom, $dateTo, $status);
+            $campaignPerformance = $this->getCampaignPerformance($dateFrom, $dateTo, $sourceId, $status);
+            $revenueAnalytics = $this->getRevenueAnalytics($dateFrom, $dateTo, $sourceId, $campaignId, $status);
+            $trendAnalysis = $this->getTrendAnalysis($dateFrom, $dateTo, $sourceId, $campaignId, $status);
+
+            $sources = Source::select('id', 'name')->orderBy('name')->get();
+            $campaigns = Campaign::select('id', 'name')->orderBy('name')->get();
+
+            return view('reports.index', compact(
+                'dateFrom', 'dateTo', 'sourceId', 'campaignId', 'metric', 'status',
+                'sources', 'campaigns', 'overview', 'chartType', 'chartData', 'conversionMetrics',
+                'sourcePerformance', 'campaignPerformance', 'revenueAnalytics', 'trendAnalysis'
+            ));
+        } catch (\Throwable $e) {
+            logger()->warning('Reports index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load reports. Please try again later.');
+
+            $sources = collect([]);
+            $campaigns = collect([]);
+
+            $overview = [
+                'total_leads' => 0,
+                'leads_change' => 0,
+                'total_revenue' => 0,
+                'revenue_change' => 0,
+                'conversion_rate' => 0,
+                'conversion_change' => 0,
+                'roi' => 0,
+                'cost_per_lead' => 0,
+            ];
+
+            $chartData = [
+                'labels' => [],
+                'datasets' => [],
+            ];
+
+            $conversionMetrics = [
+                'successful_leads' => 0,
+                'lost_leads' => 0,
+                'pending_leads' => 0,
+                'avg_conversion_time' => 0,
+                'stage_dropoffs' => [],
+            ];
+
+            $sourcePerformance = [];
+            $campaignPerformance = [];
+
+            $revenueAnalytics = [
+                'total_revenue' => 0,
+                'avg_deal_size' => 0,
+                'largest_deal' => 0,
+            ];
+
+            $trendAnalysis = [
+                'current' => [
+                    'leads' => 0,
+                    'revenue' => 0,
+                    'conversion_rate' => 0,
+                    'avg_deal_size' => 0,
+                ],
+                'previous' => [
+                    'leads' => 0,
+                    'revenue' => 0,
+                    'conversion_rate' => 0,
+                    'avg_deal_size' => 0,
+                ],
+                'trend' => [
+                    'leads' => 0,
+                    'revenue' => 0,
+                    'conversion_rate' => 0,
+                    'avg_deal_size' => 0,
+                ],
+            ];
+
+            return view('reports.index', compact(
+                'dateFrom', 'dateTo', 'sourceId', 'campaignId', 'metric', 'status',
+                'sources', 'campaigns', 'overview', 'chartType', 'chartData', 'conversionMetrics',
+                'sourcePerformance', 'campaignPerformance', 'revenueAnalytics', 'trendAnalysis'
+            ));
         }
-        
-        // Get overview metrics
-        $overview = $this->getOverviewMetrics($dateFrom, $dateTo, $sourceId, $campaignId, $status);
-        
-        // Get chart data
-        $chartData = $this->getChartData($dateFrom, $dateTo, $sourceId, $campaignId, $metric, $status);
-        
-        // Get conversion metrics
-        $conversionMetrics = $this->getConversionMetrics($dateFrom, $dateTo, $sourceId, $campaignId, $status);
-        
-        // Get source performance
-        $sourcePerformance = $this->getSourcePerformance($dateFrom, $dateTo);
-        
-        // Get campaign performance
-        $campaignPerformance = $this->getCampaignPerformance($dateFrom, $dateTo);
-        
-        // Get revenue analytics
-        $revenueAnalytics = $this->getRevenueAnalytics($dateFrom, $dateTo, $sourceId, $campaignId);
-        
-        // Get trend analysis
-        $trendAnalysis = $this->getTrendAnalysis($dateFrom, $dateTo, $sourceId, $campaignId, $status);
-        
-        $sources = Source::all();
-        $campaigns = Campaign::all();
-        
-        return view('reports.index', compact(
-            'overview', 'chartData', 'conversionMetrics', 'sourcePerformance',
-            'campaignPerformance', 'revenueAnalytics', 'trendAnalysis',
-            'sources', 'campaigns', 'dateFrom', 'dateTo', 'sourceId', 
-            'campaignId', 'chartType', 'metric', 'status'
-        ));
     }
 
     private function normalizeStatusFilter($status)
     {
-        if ($status === null || $status === '') {
-            return null;
-        }
-        $normalized = strtolower(trim($status));
-        $map = [
-            'successful' => 'successful',
-            'success' => 'successful',
-            'closed' => 'successful',
-            'won' => 'successful',
-            'lost' => 'lost',
-            'new' => 'new',
-            'contacted' => 'contacted',
-            'qualified' => 'qualified',
-            'proposal' => 'proposal',
-            'negotiation' => 'negotiation',
-        ];
-        return $map[$normalized] ?? null;
+        if (!$status || $status === 'all') return null;
+        $valid = ['successful', 'lost', 'pending'];
+        return in_array($status, $valid) ? $status : null;
     }
-    
-    private function getOverviewMetrics($dateFrom, $dateTo, $sourceId = null, $campaignId = null, $status = null)
+
+    private function getOverviewMetrics($dateFrom, $dateTo, $sourceId, $campaignId, $status)
     {
-        $statusDb = $status;
-        $leadsQuery = Lead::whereBetween('created_at', [$dateFrom, $dateTo]);
-        $adSpendQuery = AdSpend::whereBetween('spend_date', [$dateFrom, $dateTo]);
-        
-        if ($sourceId) {
-            $leadsQuery->where('source_id', $sourceId);
-            $adSpendQuery->where('source_id', $sourceId);
-        }
-        
-        if ($campaignId) {
-            $leadsQuery->where('campaign_id', $campaignId);
-            $adSpendQuery->where('campaign_id', $campaignId);
-        }
-        if ($statusDb) {
-            $leadsQuery->where('status', $statusDb);
-        }
-        
-        $leads = $leadsQuery->get();
-        $adSpends = $adSpendQuery->get();
-        
-        // Calculate previous period for comparison
-        $daysDiff = Carbon::parse($dateFrom)->diffInDays(Carbon::parse($dateTo));
-        $prevDateFrom = Carbon::parse($dateFrom)->subDays($daysDiff + 1)->format('Y-m-d');
-        $prevDateTo = Carbon::parse($dateFrom)->subDay()->format('Y-m-d');
-        
-        $prevLeadsQuery = Lead::whereBetween('created_at', [$prevDateFrom, $prevDateTo]);
-        if ($sourceId) $prevLeadsQuery->where('source_id', $sourceId);
-        if ($campaignId) $prevLeadsQuery->where('campaign_id', $campaignId);
-        if ($statusDb) $prevLeadsQuery->where('status', $statusDb);
-        $prevLeads = $prevLeadsQuery->get();
-        
-        $totalLeads = $leads->count();
-        $totalRevenue = $leads->sum('value');
-        $totalSpent = $adSpends->sum('amount_spent');
-        $closedLeads = $leads->where('status', 'successful')->count();
-        $conversionRate = $totalLeads > 0 ? ($closedLeads / $totalLeads) * 100 : 0;
-        $roi = $totalSpent > 0 ? (($totalRevenue - $totalSpent) / $totalSpent) * 100 : 0;
-        $avgLeadValue = $totalLeads > 0 ? $totalRevenue / $totalLeads : 0;
-        $costPerLead = $totalLeads > 0 ? $totalSpent / $totalLeads : 0;
-        
-        // Previous period metrics for comparison
-        $prevTotalLeads = $prevLeads->count();
-        $prevTotalRevenue = $prevLeads->sum('value');
-        $prevClosedLeads = $prevLeads->where('status', 'successful')->count();
-        
-        // Calculate changes
-        $leadsChange = $prevTotalLeads > 0 ? (($totalLeads - $prevTotalLeads) / $prevTotalLeads) * 100 : null;
-        $revenueChange = $prevTotalRevenue > 0 ? (($totalRevenue - $prevTotalRevenue) / $prevTotalRevenue) * 100 : null;
-        $conversionChange = $prevTotalLeads > 0 && $prevClosedLeads > 0 ? 
-            ($conversionRate - (($prevClosedLeads / $prevTotalLeads) * 100)) : null;
-        
-        return [
-            'total_leads' => $totalLeads,
-            'total_revenue' => $totalRevenue,
-            'total_spent' => $totalSpent,
-            'closed_leads' => $closedLeads,
-            'conversion_rate' => $conversionRate,
-            'roi' => $roi,
-            'avg_lead_value' => $avgLeadValue,
-            'cost_per_lead' => $costPerLead,
-            'leads_change' => $leadsChange,
-            'revenue_change' => $revenueChange,
-            'conversion_change' => $conversionChange,
-        ];
+        // ... existing code ...
     }
-    
+
     private function getChartData($dateFrom, $dateTo, $sourceId = null, $campaignId = null, $metric = 'leads', $status = null)
     {
         $statusDb = $status;

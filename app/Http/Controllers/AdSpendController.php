@@ -14,61 +14,87 @@ class AdSpendController extends Controller
 {
     public function index(Request $request)
     {
-        $query = AdSpend::with(['source', 'campaign']);
+        try {
+            $query = AdSpend::with(['source', 'campaign']);
+            
+            // Search functionality
+            if ($request->filled('search')) {
+                $search = $request->search;
+                $query->where(function($q) use ($search) {
+                    $q->whereHas('source', function($sq) use ($search) {
+                        $sq->where('name', 'like', "%{$search}%");
+                    })->orWhereHas('campaign', function($cq) use ($search) {
+                        $cq->where('name', 'like', "%{$search}%");
+                    })->orWhere('description', 'like', "%{$search}%");
+                });
+            }
+            
+            // Filter by source
+            if ($request->filled('source_id')) {
+                $query->where('source_id', $request->source_id);
+            }
+            
+            // Filter by campaign
+            if ($request->filled('campaign_id')) {
+                $query->where('campaign_id', $request->campaign_id);
+            }
+            
+            // Filter by date range
+            if ($request->filled('start_date')) {
+                $query->whereDate('spend_date', '>=', $request->start_date);
+            }
+            
+            if ($request->filled('end_date')) {
+                $query->whereDate('spend_date', '<=', $request->end_date);
+            }
+            
+            // Sorting
+            $sortBy = $request->get('sort_by', 'spend_date');
+            $sortOrder = $request->get('sort_order', 'desc');
+            $query->orderBy($sortBy, $sortOrder);
+            
+            $adSpends = $query->paginate(15)->withQueryString();
+            
+            // Calculate summary metrics
+            $totalSpent = AdSpend::sum('amount_spent');
+            $totalLeads = Lead::count();
+            $totalRevenue = Lead::where('status', 'closed')->sum('value');
+            $avgCostPerLead = $totalLeads > 0 ? $totalSpent / $totalLeads : 0;
+            $roi = $totalSpent > 0 ? (($totalRevenue - $totalSpent) / $totalSpent) * 100 : 0;
+            
+            // Get filter options
+            $sources = Source::orderBy('name')->get();
+            $campaigns = Campaign::orderBy('name')->get();
+            
+            return view('ad-spend.index', compact(
+                'adSpends', 'sources', 'campaigns', 'totalSpent', 'totalLeads', 
+                'totalRevenue', 'avgCostPerLead', 'roi'
+            ));
+        } catch (\Throwable $e) {
+            logger()->warning('Ad spend index failed, showing safe defaults', ['error' => $e->getMessage()]);
+            session()->flash('error', 'We are currently unable to load ad spend records. Please try again later.');
         
-        // Search functionality
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->whereHas('source', function($sq) use ($search) {
-                    $sq->where('name', 'like', "%{$search}%");
-                })->orWhereHas('campaign', function($cq) use ($search) {
-                    $cq->where('name', 'like', "%{$search}%");
-                })->orWhere('description', 'like', "%{$search}%");
-            });
+            $adSpends = new \Illuminate\Pagination\LengthAwarePaginator(collect([]), 0, 15, 1, [
+                'path' => url()->current(),
+                'query' => $request->query(),
+            ]);
+        
+            $totalSpent = 0;
+            $totalLeads = 0;
+            $totalRevenue = 0;
+            $avgCostPerLead = 0;
+            $roi = 0;
+        
+            $sources = collect([]);
+            $campaigns = collect([]);
+            $sortBy = $request->get('sort_by', 'spend_date');
+            $sortOrder = $request->get('sort_order', 'desc');
+        
+            return view('ad-spend.index', compact(
+                'adSpends', 'sources', 'campaigns', 'totalSpent', 'totalLeads',
+                'totalRevenue', 'avgCostPerLead', 'roi'
+            ));
         }
-        
-        // Filter by source
-        if ($request->filled('source_id')) {
-            $query->where('source_id', $request->source_id);
-        }
-        
-        // Filter by campaign
-        if ($request->filled('campaign_id')) {
-            $query->where('campaign_id', $request->campaign_id);
-        }
-        
-        // Filter by date range
-        if ($request->filled('start_date')) {
-            $query->whereDate('spend_date', '>=', $request->start_date);
-        }
-        
-        if ($request->filled('end_date')) {
-            $query->whereDate('spend_date', '<=', $request->end_date);
-        }
-        
-        // Sorting
-        $sortBy = $request->get('sort_by', 'spend_date');
-        $sortOrder = $request->get('sort_order', 'desc');
-        $query->orderBy($sortBy, $sortOrder);
-        
-        $adSpends = $query->paginate(15)->withQueryString();
-        
-        // Calculate summary metrics
-        $totalSpent = AdSpend::sum('amount_spent');
-        $totalLeads = Lead::count();
-        $totalRevenue = Lead::where('status', 'closed')->sum('value');
-        $avgCostPerLead = $totalLeads > 0 ? $totalSpent / $totalLeads : 0;
-        $roi = $totalSpent > 0 ? (($totalRevenue - $totalSpent) / $totalSpent) * 100 : 0;
-        
-        // Get filter options
-        $sources = Source::orderBy('name')->get();
-        $campaigns = Campaign::orderBy('name')->get();
-        
-        return view('ad-spend.index', compact(
-            'adSpends', 'sources', 'campaigns', 'totalSpent', 'totalLeads', 
-            'totalRevenue', 'avgCostPerLead', 'roi'
-        ));
     }
     
     public function create()

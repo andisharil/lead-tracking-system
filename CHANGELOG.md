@@ -1,28 +1,25 @@
 # Lead Tracking System - Change Log
 
-## 2024-10-05 - View Compilation Path Fix
+## [2024-12-19] - Vercel Deployment Fix
 
-### What was the problem?
-- The website was showing HTTP 500 errors on Vercel due to view compilation issues
-- Error logs showed "file_put_contents failed" when trying to write compiled view files to read-only directories
-- Laravel was attempting to write compiled Blade templates to `/var/task/user/storage/framework/views/` which is read-only in Vercel's serverless environment
-
-### What we fixed
-- **Fixed view compilation path configuration** by removing `realpath()` function that was causing issues in serverless environments
-- **Ensured proper view caching** by rebuilding configuration and view caches
-- **Maintained compatibility** with both local development and Vercel deployment environments
-
-### Technical details
+### Fixed
+- Fixed critical 500 errors in Vercel deployment caused by missing cache directories
+- Root cause: Laravel couldn't access `/var/task/user/bootstrap/cache` directory in serverless environment
+- Updated `bootstrap/app.php` to automatically create required cache and storage directories at runtime:
+  - `/tmp/bootstrap/cache` for Laravel's package manifest and configuration cache
+  - `/tmp/views` for compiled Blade templates
+  - `/tmp/storage/framework/cache` for application cache
+  - `/tmp/storage/framework/sessions` for session storage
+  - `/tmp/storage/logs` for application logs
+- Updated configuration files to use environment variables for flexible path management:
+  - `config/cache.php`: Added `CACHE_PATH` environment variable support
+  - `config/session.php`: Added `SESSION_PATH` environment variable support
+  - `config/logging.php`: Added `LOG_PATH` environment variable support
+  - `config/filesystems.php`: Added `STORAGE_PATH` environment variable support
+- Set appropriate environment variables in `bootstrap/app.php` for Vercel/AWS Lambda environments
+- Fixed view compilation path issue for Vercel deployment
 - Updated `config/view.php` to use `storage_path('framework/views')` instead of `realpath(storage_path('framework/views'))`
-- The `realpath()` function was resolving to absolute paths that don't work in serverless environments
-- Ran `php artisan config:cache` to rebuild configuration cache with the new settings
-- Ran `php artisan view:cache` to pre-compile all Blade templates
-- The `/tmp/views` path set in `vercel.json` and `bootstrap/app.php` now works correctly
-
-### Result
-- The website should now load properly without view compilation errors
-- All Blade templates will compile correctly in both local and Vercel environments
-- Better error handling for serverless deployment scenarios
+- This resolves the issue where `realpath()` returns `false` in serverless environments when the directory doesn't exist yet
 
 ## [2024-10-05] - Bootstrap Cache Write Error Fix
 
@@ -253,3 +250,28 @@ Impact:
 - Home, Login, and other pages should load normally.
 - Error pages should also display properly if something goes wrong early.
 - No database tables were changed.
+
+## 2025-10-05 - Prevent dashboard crash when the database is temporarily offline
+
+What changed (plain language):
+- We made the Dashboard page more reliable on cloud hosting. If the database is not reachable for a moment, the page will still open and show safe placeholder numbers instead of crashing.
+- The system will automatically write a warning to the log so we can investigate, but users won’t see a broken page.
+
+Impact:
+- Visitors can still access the Dashboard without seeing a 500 error during brief database interruptions.
+- No changes were made to any database tables or stored data.
+
+Files updated:
+- app/Http/Controllers/DashboardController.php: Wrapped data loading in a safety net (try/catch) and used default values if the database is down.
+
+## 2025-10-05 - Session storage fix for serverless platforms
+
+What changed (plain language):
+- We separated where session files are stored from the cookie’s path setting. This avoids conflicts on serverless platforms like Vercel.
+
+Impact:
+- More stable login sessions and fewer errors related to session storage.
+- No changes were made to any database tables or stored data.
+
+Files updated:
+- config/session.php: Uses SESSION_FILES_PATH for file storage and SESSION_COOKIE_PATH for the cookie path.

@@ -33,8 +33,31 @@ if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) ||
     
     // Also set storage paths
     $_ENV['CACHE_PATH'] = $_ENV['CACHE_PATH'] ?? '/tmp/storage/framework/cache';
-    $_ENV['SESSION_PATH'] = $_ENV['SESSION_PATH'] ?? '/tmp/storage/framework/sessions';
+    // Use distinct env variables for session files vs cookie path to avoid conflicts in serverless
+    $_ENV['SESSION_FILES_PATH'] = $_ENV['SESSION_FILES_PATH'] ?? '/tmp/storage/framework/sessions';
+    $_ENV['SESSION_COOKIE_PATH'] = $_ENV['SESSION_COOKIE_PATH'] ?? '/';
     $_ENV['LOG_PATH'] = $_ENV['LOG_PATH'] ?? '/tmp/storage/logs';
+
+    // Fallback: if APP_KEY is missing, generate a temporary key persisted in /tmp for the lifetime of the instance
+    if ((empty($_ENV['APP_KEY']) && empty(getenv('APP_KEY')))) {
+        $tmpKeyFile = '/tmp/app_key';
+        $key = null;
+        if (is_file($tmpKeyFile)) {
+            $key = trim((string) file_get_contents($tmpKeyFile));
+        }
+        if (!$key) {
+            try {
+                $random = base64_encode(random_bytes(32));
+                $key = 'base64:' . $random;
+                file_put_contents($tmpKeyFile, $key);
+            } catch (\Throwable $e) {
+                // As an absolute last resort, use a predictable fallback to avoid fatal errors
+                $key = 'base64:' . base64_encode(str_pad('', 32, '0'));
+            }
+        }
+        $_ENV['APP_KEY'] = $key;
+        putenv('APP_KEY='.$key);
+    }
 }
 
 return Application::configure(basePath: dirname(__DIR__))

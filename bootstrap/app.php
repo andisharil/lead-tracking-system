@@ -16,4 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })
+    // Explicitly load providers to ensure the view system is available in serverless runtime
+    ->withProviders(require __DIR__ . '/providers.php')
+    ->create();

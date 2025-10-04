@@ -1,0 +1,493 @@
+﻿task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:36:39 2025] 127.0.0.1:45720 Closing
+
+ework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:36:37 2025] 127.0.0.1:45712 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:22:32 2025] 127.0.0.1:53946 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:22:32 2025] 127.0.0.1:53940 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:22:32 2025] 127.0.0.1:53938 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:18:48 2025] 127.0.0.1:34454 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:18:47 2025] 127.0.0.1:54086 Closing
+
+ine->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#50 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+[Sat Oct  4 18:16:25 2025] 127.0.0.1:39682 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:16:23 2025] 127.0.0.1:39672 Closing
+
+ework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:16:23 2025] 127.0.0.1:39656 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:16:21 2025] 127.0.0.1:40174 Closing
+
+task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#51 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#53 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#54 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#55 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#56 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(48): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#57 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#58 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#59 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#60 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#61 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#62 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#63 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#64 /var/task/user/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#65 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#66 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#67 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#68 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#69 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#70 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:16:21 2025] 127.0.0.1:40164 Closing
+
+ðŸ˜ Accessing lead-tracking-system.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:08:02 2025] 127.0.0.1:36416 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:08:02] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:08:02 2025] 127.0.0.1:36416 Closing
+
+ðŸ˜ Accessing lead-tracking-system-2kfv3ppih-andi-sharils-projects.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:07:52 2025] 127.0.0.1:51930 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:07:52] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:52 2025] 127.0.0.1:51930 Closing
+
+ðŸ˜ Accessing lead-tracking-system-2kfv3ppih-andi-sharils-projects.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:07:50 2025] 127.0.0.1:51916 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:07:50] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:50 2025] 127.0.0.1:51916 Closing
+
+ðŸ˜ Accessing lead-tracking-system-2kfv3ppih-andi-sharils-projects.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45986 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:07:47] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45986 Closing
+
+ðŸ˜ Accessing lead-tracking-system-2kfv3ppih-andi-sharils-projects.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45980 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:07:47] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45980 Closing
+
+ðŸ˜ Accessing lead-tracking-system-2kfv3ppih-andi-sharils-projects.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45972 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:07:47] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45972 Closing
+
+ðŸ˜ Accessing lead-tracking-system-2kfv3ppih-andi-sharils-projects.vercel.app/
+ðŸ˜ Querying /
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45948 Closing
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45958 Accepted
+
+ðŸ˜STDERR: [2025-10-04 18:07:47] production.ERROR: The /var/task/user/bootstrap/cache directory must be present and writable. {"exception":"[object] (Exception(code: 0): The /var/task/user/bootstrap/cache directory must be present and writable. at /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php:179)
+[stacktrace]
+#0 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate\Foundation\PackageManifest->write(Array)
+#1 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate\Foundation\PackageManifest->build()
+#2 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate\Foundation\PackageManifest->getManifest()
+#3 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate\Foundation\PackageManifest->config('aliases')
+#4 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap(Object(Illuminate\Foundation\Application))
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#8 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#10 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#11 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#12 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:47 2025] 127.0.0.1:45958 Closing
+
+rray)
+#5 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(138): Illuminate\Foundation\Application->make('translator', Array)
+#6 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(997): app('translator')
+#7 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php(1029): trans('Server Error', Array, NULL)
+#8 /tmp/views/cb8b596f963bb091e961ffaa9856ae0f.php(1): __('Server Error')
+#9 /var/task/user/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('/tmp/views/cb8b...')
+#10 /var/task/user/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#11 /var/task/user/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(57): Illuminate\Filesystem\Filesystem->getRequire('/tmp/views/cb8b...', Array)
+#12 /var/task/user/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(76): Illuminate\View\Engines\PhpEngine->evaluatePath('/tmp/views/cb8b...', Array)
+#13 /var/task/user/vendor/laravel/framework/src/Illuminate/View/View.php(208): Illuminate\View\Engines\CompilerEngine->get('/var/task/user/...', Array)
+#14 /var/task/user/vendor/laravel/framework/src/Illuminate/View/View.php(191): Illuminate\View\View->getContents()
+#15 /var/task/user/vendor/laravel/framework/src/Illuminate/View/View.php(160): Illuminate\View\View->renderContents()
+#16 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Response.php(78): Illuminate\View\View->render()
+#17 /var/task/user/vendor/laravel/framework/src/Illuminate/Http/Response.php(34): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#18 /var/task/user/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(61): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#19 /var/task/user/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(91): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#20 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(927): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#21 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(848): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#22 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(739): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#23 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(627): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(Exception))
+#24 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(574): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Exception))
+#25 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(148): Illuminate\Foundation\Http\Kernel->renderException(Object(Illuminate\Http\Request), Object(Exception))
+#26 /var/task/user/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#27 /var/task/user/public/index.php(59): Illuminate\Foundation\Application->handleRequest(Object(Illuminate\Http\Request))
+#28 /var/task/user/api/index.php(4): require('/var/task/user/...')
+#29 {main}
+"} 
+
+ðŸ˜STDERR: [Sat Oct  4 18:07:46 2025] 127.0.0.1:38186 Closing
+

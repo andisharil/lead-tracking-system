@@ -5,10 +5,22 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
 // Ensure cache directories exist in serverless environments
-if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
-    $cacheDir = '/tmp/bootstrap/cache';
-    if (!is_dir($cacheDir)) {
-        mkdir($cacheDir, 0755, true);
+if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || 
+    (isset($_ENV['AWS_LAMBDA_FUNCTION_NAME']) || isset($_SERVER['AWS_LAMBDA_FUNCTION_NAME']))) {
+    
+    // Create all necessary cache directories
+    $directories = [
+        '/tmp/bootstrap/cache',
+        '/tmp/views',
+        '/tmp/storage/framework/cache',
+        '/tmp/storage/framework/sessions',
+        '/tmp/storage/logs'
+    ];
+    
+    foreach ($directories as $dir) {
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
     }
     
     // Set cache paths for serverless environment
@@ -19,11 +31,10 @@ if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL'])) {
     $_ENV['APP_EVENTS_CACHE'] = $_ENV['APP_EVENTS_CACHE'] ?? '/tmp/bootstrap/cache/events.php';
     $_ENV['VIEW_COMPILED_PATH'] = $_ENV['VIEW_COMPILED_PATH'] ?? '/tmp/views';
     
-    // Also ensure views directory exists
-    $viewsDir = '/tmp/views';
-    if (!is_dir($viewsDir)) {
-        mkdir($viewsDir, 0755, true);
-    }
+    // Also set storage paths
+    $_ENV['CACHE_PATH'] = $_ENV['CACHE_PATH'] ?? '/tmp/storage/framework/cache';
+    $_ENV['SESSION_PATH'] = $_ENV['SESSION_PATH'] ?? '/tmp/storage/framework/sessions';
+    $_ENV['LOG_PATH'] = $_ENV['LOG_PATH'] ?? '/tmp/storage/logs';
 }
 
 return Application::configure(basePath: dirname(__DIR__))

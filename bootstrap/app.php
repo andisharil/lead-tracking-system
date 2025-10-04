@@ -23,11 +23,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
     ->withProviders(require __DIR__ . '/providers.php')
     ->create();
 
-// Register critical providers immediately after app creation to guarantee 'view' binding in serverless environments
-$app->register(FilesystemServiceProvider::class);
-$app->register(ViewServiceProvider::class);
-
-// Ensure compiled Blade views are written to a writable location in serverless environments
+// Prefer a writable compiled views directory (env or fallback)
 $envCompiled = getenv('VIEW_COMPILED_PATH') ?: null;
 $storageCompiled = rtrim($app->storagePath(), '\\/') . '/framework/views';
 $targetCompiled = $envCompiled ?: $storageCompiled;
@@ -44,7 +40,13 @@ if (!@is_writable($targetCompiled)) {
     $targetCompiled = $tmpCompiled;
 }
 
-// Apply configuration so Blade uses the writable compiled path
-$app->make('config')->set('view.compiled', $targetCompiled);
+// Make sure the environment knows the compiled path before providers use config
+putenv('VIEW_COMPILED_PATH=' . $targetCompiled);
+$_ENV['VIEW_COMPILED_PATH'] = $targetCompiled;
+$_SERVER['VIEW_COMPILED_PATH'] = $targetCompiled;
+
+// Register critical providers after ensuring compiled path env is set
+$app->register(FilesystemServiceProvider::class);
+$app->register(ViewServiceProvider::class);
 
 return $app;

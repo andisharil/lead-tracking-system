@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Filesystem\FilesystemServiceProvider;
+use Illuminate\View\ViewServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Ensure Laravel's view system is available early in serverless environments (e.g., Vercel)
+        // This prevents "Target class [view] does not exist" errors when exceptions try to render views
+        $this->app->register(FilesystemServiceProvider::class);
+        $this->app->register(ViewServiceProvider::class);
     }
 
     /**
@@ -57,24 +62,20 @@ class AppServiceProvider extends ServiceProvider
             }
             if (!empty($settings['general']['timezone'])) {
                 Config::set('app.timezone', $settings['general']['timezone']);
-                date_default_timezone_set($settings['general']['timezone']);
             }
-            if (isset($settings['general']['debug_mode'])) {
-                Config::set('app.debug', (bool)$settings['general']['debug_mode']);
+            if (isset($settings['general']['app_debug'])) {
+                Config::set('app.debug', (bool) $settings['general']['app_debug']);
             }
-            if (!empty($settings['general']['session_timeout'])) {
-                Config::set('session.lifetime', (int)$settings['general']['session_timeout']);
+            if (!empty($settings['general']['session_lifetime'])) {
+                Config::set('session.lifetime', (int) $settings['general']['session_lifetime']);
             }
 
-            // Mail configuration
-            if (!empty($settings['email']['mail_driver'])) {
-                Config::set('mail.default', $settings['email']['mail_driver']);
-            }
+            // Mail settings
             if (!empty($settings['email']['mail_host'])) {
                 Config::set('mail.mailers.smtp.host', $settings['email']['mail_host']);
             }
             if (!empty($settings['email']['mail_port'])) {
-                Config::set('mail.mailers.smtp.port', (int)$settings['email']['mail_port']);
+                Config::set('mail.mailers.smtp.port', (int) $settings['email']['mail_port']);
             }
             if (!empty($settings['email']['mail_username'])) {
                 Config::set('mail.mailers.smtp.username', $settings['email']['mail_username']);

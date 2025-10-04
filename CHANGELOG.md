@@ -108,3 +108,18 @@ The application is now running smoothly with the new Supabase database connectio
 ### Why this matters
 - Without this fix, Vercel doesn’t know where the built files are and fails the deployment.
 - With this update, deployments should succeed and your app will be available online.
+
+---
+
+## 2025-10-04 - Fixed pages showing “view” error on Vercel
+
+What changed (plain language):
+- We turned on the website’s page-rendering feature earlier during startup. This prevents the “Target class [view] does not exist” error that caused a blank error page.
+- We also made sure the icon request (/favicon.png) points to the existing website icon so it doesn’t trigger an error.
+
+Impact:
+- Home, Login, and other pages should now open normally without the previous 500 error.
+- No changes were made to any database tables or stored data.
+
+If you still see an error:
+- Please share the Vercel deployment link and the time it happened so we can check the logs quickly.
